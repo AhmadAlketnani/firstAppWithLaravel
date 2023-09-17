@@ -24,9 +24,25 @@ Route::get('/test', function () {
     return '<h1>this the first router with laravel  </h1>';
 });
 
+// you must enter the valule
 Route::get('/test2{name}', function ($name) {
     return '<h1>this the first router with laravel '. $name .' </h1>';
 });
+
+// you may not enter the valule
+Route::get('/test3{name?}', function ($name = null) {
+    return '<h1>this the first router with laravel '. $name .' </h1>';
+});
+
+// the valule must be int
+Route::get('/test4{id?}', function ($id = null) {
+    return '<h1>this the first router with laravel '. $id .' </h1>';
+})->where(['id' => '[0-9]+']);
+
+// the valule must be string
+Route::get('/test5{name?}', function ($name = null) {
+    return '<h1>this the first router with laravel '. $name .' </h1>';
+})->whereAlpha("name");
 
 // *****************************************************************************
 
