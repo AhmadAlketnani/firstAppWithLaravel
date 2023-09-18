@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,41 @@ Route::get('/test4{id?}', function ($id = null) {
 Route::get('/test5{name?}', function ($name = null) {
     return '<h1>this the first router with laravel '. $name .' </h1>';
 })->whereAlpha("name");
+
+// *****************************************************************************
+
+
+// prefix
+
+// first method
+
+// Route::prefix('settings')->group(function () {
+
+//     Route::get('user', fn () => '<h1>this is group route</h1>' );
+//     Route::get('profile', fn () => '<h1>this is group route</h1>' );
+// });
+
+// second method
+
+Route::group(['prefix' => 'settings'] ,function () {
+
+    Route::get('user', fn () => '<h1>this is group route of settings and user </h1>' );
+    Route::get('profile', fn () => '<h1>this is group route  of settings and profile </h1>' );
+});
+
+// *****************************************************************************
+
+// redirect if the linke wrong
+
+// Route::fallback( function() {
+
+//     redirect('/');
+
+// });
+
+// Route::fallback( fn() => redirect('/') );
+
+Route::fallback( fn() =>  Redirect::to('/') );
 
 // *****************************************************************************
 
@@ -157,8 +193,3 @@ Route::match( ['delete' , 'post' , 'get'],'/mymatch', function() {
 });
 
 // *****************************************************************************
-
-
-
-
-
