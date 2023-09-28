@@ -208,9 +208,42 @@ Route::post('receiveData', function () {
 
 // *****************************************************************************
 
-// Route with contorller
-// Route::controller(FirstContorller::class)->group(function () {
+// Route with controller
+
+// Route::controller(FirstController::class)->group(function () {
 //     Route::get('firstCon', 'myview');
 // });
 
-Route::get('firstcon',[FirstContorller::class,'myview']);
+// Route::get('firstcon',[FirstController::class,'myview']);
+
+// *****************************************************************************
+
+// Route with contorller and namespace
+
+Route::controller('FirstController')->group(function () {
+    Route::get('firstCon', 'myview');
+});
+
+Route::get('firstcon','FirstController@myview');
+
+// *****************************************************************************
+// domain
+
+Route::domain('pro')->group(function() {
+    Route::get('hello', fn() => view('welcome'));
+    Route::get('hello1', fn() => 'welcome' );
+});
+
+// *****************************************************************************
+//
+// enum binding
+
+enum Section:String {
+    case Phone ="phone" ;
+    case Computer ="computer" ;
+    case Device ="device" ;
+}
+
+Route::get('sections/{section}', fn(Section $section) => $section->value);
+
+

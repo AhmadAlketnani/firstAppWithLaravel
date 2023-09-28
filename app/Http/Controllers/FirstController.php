@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class FirstContorller extends Controller
+class FirstController extends Controller
 {
     //
     function myview()

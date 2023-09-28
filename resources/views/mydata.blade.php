@@ -2,3 +2,9 @@
 {{ csrf_field() }}
 <input type="submit" value="sendData">
 </form>
+
+
+
+<table>
+    
+</table>
